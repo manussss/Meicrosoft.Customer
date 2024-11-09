@@ -23,12 +23,14 @@ public class CustomerService(ICustomerRepository customerRepository) : ICustomer
         return new GetCustomerDto
         {
             Name = customer.Name,
-            Address =
+            IsDeleted = customer.IsDeleted,
+            Address = new GetAddressDto
             {
                 City = customer.Address.City,
                 Number = customer.Address.Number,
                 ZipCode = customer.Address.ZipCode,
-                Street = customer.Address.Street
+                Street = customer.Address.Street,
+                IsDeleted = customer.Address.IsDeleted
             }
         };
     }
@@ -36,5 +38,29 @@ public class CustomerService(ICustomerRepository customerRepository) : ICustomer
     public async Task DeleteAsync(Guid id)
     {
         await customerRepository.DeleteAsync(id);
+    }
+
+    public async Task<IEnumerable<GetCustomerDto>> GetAllAsNoTrackingAsync()
+    {
+        var customers = await customerRepository.GetAllAsNoTrackingAsync();
+
+        if (customers is null)
+            return null;
+
+        return customers.Select(customer => new GetCustomerDto
+        {
+            Id = customer.Id,
+            Name = customer.Name,
+            IsDeleted = customer.IsDeleted,
+            Address = new GetAddressDto
+            {
+                Id = customer.Address.Id,
+                ZipCode = customer.Address.ZipCode,
+                Street = customer.Address.Street,
+                City = customer.Address.City,
+                Number = customer.Address.Number,
+                IsDeleted = customer.Address.IsDeleted
+            }
+        });
     }
 }

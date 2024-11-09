@@ -1,10 +1,15 @@
-﻿namespace Meicrosoft.Customer.IoC
+﻿namespace Meicrosoft.Customer.IoC;
+
+public static class DatabaseInjection
 {
-    public static class DatabaseInjection
+    public static void AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
-        public static void AddDatabase(this IServiceCollection services, IConfiguration configuration)
+        services.AddDbContext<CustomersContext>(options => options.UseSqlServer(configuration.GetConnectionString("CustomersConnection"), sqlOptions =>
         {
-            services.AddDbContext<CustomersContext>(options => options.UseSqlServer(configuration.GetConnectionString("CustomersConnection")));
-        }
+            sqlOptions.EnableRetryOnFailure(
+                maxRetryCount: 10,
+                maxRetryDelay: TimeSpan.FromSeconds(30),
+                errorNumbersToAdd: null);
+        }));
     }
 }

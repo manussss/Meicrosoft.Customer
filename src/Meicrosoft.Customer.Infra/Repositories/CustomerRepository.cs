@@ -10,12 +10,22 @@ public class CustomerRepository(CustomersContext customersContext) : ICustomerRe
 
     public async Task<Domain.CustomersAggregate.Customer?> GetByIdAsync(Guid id)
     {
-        return await customersContext.Customer.FindAsync(id);
+        return await customersContext.Customer.Include(c => c.Address).FirstOrDefaultAsync(c => c.Id == id);
     }
 
     public async Task DeleteAsync(Guid id)
     {
-        customersContext.Remove(id);
-        await customersContext.SaveChangesAsync();
+        var customer = customersContext.Customer.Find(id);
+
+        if (customer != null)
+        {
+            customersContext.Remove(customer);
+            await customersContext.SaveChangesAsync();
+        }
+    }
+
+    public async Task<IEnumerable<Domain.CustomersAggregate.Customer>> GetAllAsNoTrackingAsync()
+    {
+        return await customersContext.Customer.Include(c => c.Address).AsNoTracking().ToListAsync();
     }
 }
