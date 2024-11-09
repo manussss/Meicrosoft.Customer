@@ -19,6 +19,17 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
+var applyMigrations = builder.Configuration.GetValue<bool>("APPLY_MIGRATIONS");
+
+if (applyMigrations)
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbContext = scope.ServiceProvider.GetRequiredService<CustomersContext>();
+        dbContext.Database.Migrate();
+    }
+}
+
 app.MapPost("api/v1/customers", async (
     [FromServices] ICustomerService customerService,
     CreateCustomerDto dto) =>
@@ -47,6 +58,16 @@ app.MapGet("api/v1/customers/{id}", async (
         return Results.NotFound();
 
     return Results.Ok(customer);
+});
+
+app.MapGet("api/v1/customers", async ([FromServices] ICustomerService customerService) =>
+{
+    var customers = await customerService.GetAllAsNoTrackingAsync();
+
+    if (customers == null)
+        return Results.NotFound();
+
+    return Results.Ok(customers);
 });
 
 app.Run();

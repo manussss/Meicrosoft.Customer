@@ -7,15 +7,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4CA04394-D25
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{CA817D4A-C937-4D24-B21D-AF78205A44DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meicrosoft.Customer.Domain", "src\Meicrosoft.Customer.Domain\Meicrosoft.Customer.Domain.csproj", "{0B7D4C2D-F1DB-4D4A-B563-E21DDEE1F001}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meicrosoft.Customer.Domain", "src\Meicrosoft.Customer.Domain\Meicrosoft.Customer.Domain.csproj", "{0B7D4C2D-F1DB-4D4A-B563-E21DDEE1F001}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meicrosoft.Customer.API", "src\Meicrosoft.Customer.API\Meicrosoft.Customer.API.csproj", "{5EA97B86-E209-4183-A67C-91629030C1A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meicrosoft.Customer.API", "src\Meicrosoft.Customer.API\Meicrosoft.Customer.API.csproj", "{5EA97B86-E209-4183-A67C-91629030C1A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meicrosoft.Customer.Application", "src\Meicrosoft.Customer.Application\Meicrosoft.Customer.Application.csproj", "{B854CB1A-9B93-4578-B38B-B5C0DDA76D47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meicrosoft.Customer.Application", "src\Meicrosoft.Customer.Application\Meicrosoft.Customer.Application.csproj", "{B854CB1A-9B93-4578-B38B-B5C0DDA76D47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meicrosoft.Customer.Infra", "src\Meicrosoft.Customer.Infra\Meicrosoft.Customer.Infra.csproj", "{E8434C6C-24FC-42D1-9246-CA9D90935CA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meicrosoft.Customer.Infra", "src\Meicrosoft.Customer.Infra\Meicrosoft.Customer.Infra.csproj", "{E8434C6C-24FC-42D1-9246-CA9D90935CA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meicrosoft.Customer.IoC", "src\Meicrosoft.Customer.IoC\Meicrosoft.Customer.IoC.csproj", "{1BC414D0-6C91-4078-9D4C-DF42AD6D4C26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meicrosoft.Customer.IoC", "src\Meicrosoft.Customer.IoC\Meicrosoft.Customer.IoC.csproj", "{1BC414D0-6C91-4078-9D4C-DF42AD6D4C26}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{B39FD324-A41C-4FDA-BC30-01671927C93D}"
+	ProjectSection(SolutionItems) = preProject
+		docker\docker-compose.yml = docker\docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
