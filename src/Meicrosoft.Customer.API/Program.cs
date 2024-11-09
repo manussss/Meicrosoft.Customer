@@ -4,7 +4,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddServices();
-builder.Services.AddDatabaseInjection(builder.Configuration);
+builder.Services.AddDatabase(builder.Configuration);
+builder.Services.AddRepositories();
 
 var app = builder.Build();
 
@@ -26,6 +27,7 @@ app.MapPost("api/v1/customers", async (
 
     return Results.Created();
 });
+
 app.MapDelete("api/v1/customers/{id}", async (
     [FromServices] ICustomerService customerService,
     Guid id) =>
@@ -33,6 +35,18 @@ app.MapDelete("api/v1/customers/{id}", async (
     await customerService.DeleteAsync(id);
 
     return Results.NoContent();
+});
+
+app.MapGet("api/v1/customers/{id}", async (
+    [FromServices] ICustomerService customerService,
+    Guid id) =>
+{
+    var customer = await customerService.GetByIdAsync(id);
+
+    if (customer == null)
+        return Results.NotFound();
+
+    return Results.Ok(customer);
 });
 
 app.Run();

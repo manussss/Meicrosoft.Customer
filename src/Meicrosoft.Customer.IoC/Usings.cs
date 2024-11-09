@@ -4,3 +4,5 @@ global using Meicrosoft.Customer.Application.Services.Contracts;
 global using Meicrosoft.Customer.Infra.Data;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.Extensions.Configuration;
+global using Meicrosoft.Customer.Domain.Contracts;
+global using Meicrosoft.Customer.Infra.Repositories;

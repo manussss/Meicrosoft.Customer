@@ -3,5 +3,6 @@
 public interface ICustomerService
 {
     Task CreateAsync(CreateCustomerDto dto);
+    Task<GetCustomerDto?> GetByIdAsync(Guid id);
     Task DeleteAsync(Guid id);
 }
