@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Meicrosoft.Customer.Application\Meicrosoft.Customer.Application.csproj" />
+    <ProjectReference Include="..\Meicrosoft.Customer.IoC\Meicrosoft.Customer.IoC.csproj" />
   </ItemGroup>
 
 </Project>
